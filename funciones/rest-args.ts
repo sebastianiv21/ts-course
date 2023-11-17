@@ -5,5 +5,8 @@
 
   const name = fullName("Clark", "Kent", "Superman");
 
+  let myFunction: () => string;
+  let myNewFunction: (a: number, b: number) => number;
+
   console.log({ name });
 })();
