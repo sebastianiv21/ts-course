@@ -1,10 +1,6 @@
-const message: string = "Hello World";
+const a: number = 10;
+let b: string;
 
-const hero = {
-  name: "Ironman",
-  age: 45,
+const sayHello = (message: number) => {
+  console.log(message);
 };
-
-hero.age = 50;
-
-console.log(hero.age + 1);
