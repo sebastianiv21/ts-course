@@ -3,6 +3,10 @@ function sumar(a: number, b: number): number {
   return a + b;
 }
 
+const misuma = sumar(5, 10);
+
+console.log(misuma);
+
 const contar = (heroes: string[]): number => {
   return heroes.length;
 };
