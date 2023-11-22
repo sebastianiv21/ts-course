@@ -1,27 +1,53 @@
-import { StringUtils, getStringInfo, toUpperCase } from "../app/Utils";
+import { getStringInfo, StringUtils, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
-  describe.only('StringUtils tests', () => {
+  describe.only("StringUtils tests", () => {
     let sut: StringUtils;
 
     beforeEach(() => {
       sut = new StringUtils();
-      console.log('Setup')
+      console.log("Setup");
     });
 
     afterEach(() => {
       // clearing mocks
-      console.log('Teardown')
+      console.log("Teardown");
     });
 
-    it('should return correct  uppercase', () =>{
-      const actual = sut.toUpperCase('abc');
+    it("should return correct  uppercase", () => {
+      const actual = sut.toUpperCase("abc");
 
-      expect(actual).toBe('ABC');
-      console.log('Actual test')
-    })
-  })
+      expect(actual).toBe("ABC");
+      console.log("Actual test");
+    });
 
+    it("should throw error on invalid argument - function", () => {
+      function expectError() {
+        sut.toUpperCase("");
+      }
+
+      expect(expectError).toThrow();
+      expect(expectError).toThrowError("Invalid argument!");
+    });
+
+    it("should throw error on invalid argument - arrow function", () => {
+      expect(() => {
+        sut.toUpperCase("");
+      }).toThrowError("Invalid argument!");
+    });
+
+    it("should throw error on invalid argument - try catch block", (done) => {
+      try {
+        sut.toUpperCase("");
+        done('GetStringInfo should throw error for invalid arg!')
+        // fail('GetStringInfo should throw error for invalid arg!')
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty("message", "Invalid argument!");
+        done();
+      }
+    });
+  });
 
   // can use test() as well
   it("should return uppercase of valid string", () => {
@@ -42,11 +68,11 @@ describe("Utils test suite", () => {
       { input: "abc", expected: "ABC" },
       { input: "My-String", expected: "MY-STRING" },
       { input: "def", expected: "DEF" },
-    ])("$input toUpperCase should be $expected", ({input, expected}) => {
-        const sut = toUpperCase;
-        const actual = sut(input);
-        expect(actual).toBe(expected);
-      });
+    ])("$input toUpperCase should be $expected", ({ input, expected }) => {
+      const sut = toUpperCase;
+      const actual = sut(input);
+      expect(actual).toBe(expected);
+    });
   });
 
   describe('getStringInfo for arg "My-String" should', () => {
