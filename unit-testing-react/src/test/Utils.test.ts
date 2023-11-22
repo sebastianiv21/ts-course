@@ -1,6 +1,28 @@
-import { getStringInfo, toUpperCase } from "../app/Utils";
+import { StringUtils, getStringInfo, toUpperCase } from "../app/Utils";
 
 describe("Utils test suite", () => {
+  describe.only('StringUtils tests', () => {
+    let sut: StringUtils;
+
+    beforeEach(() => {
+      sut = new StringUtils();
+      console.log('Setup')
+    });
+
+    afterEach(() => {
+      // clearing mocks
+      console.log('Teardown')
+    });
+
+    it('should return correct  uppercase', () =>{
+      const actual = sut.toUpperCase('abc');
+
+      expect(actual).toBe('ABC');
+      console.log('Actual test')
+    })
+  })
+
+
   // can use test() as well
   it("should return uppercase of valid string", () => {
     // AAA principles
